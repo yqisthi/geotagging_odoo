@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <menuitem
+    id="geotagging_root"
+    name="Odoo Geotagging"
+    web_icon="geotagging_odoo,static/description/icon.png"
+    sequence="0"
+  />
+
+  <menuitem
+    id="haus_paymentvoucher_master"
+    name="Geotagging"
+    parent="geotagging_root"
+    action="action_geotagging_odoo"
+    sequence="1"
+  />
+
+</odoo>
