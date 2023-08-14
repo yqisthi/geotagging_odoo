@@ -8,10 +8,13 @@
     'website': '',
     'license': 'LGPL-3',
     'depends': [
+        'web_google_maps',
+        'web_map',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/geotagging.xml',
+        'views/maps.xml',
         'views/menu.xml',
     ],
     'assets': {

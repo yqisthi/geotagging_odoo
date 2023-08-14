@@ -1,1 +1,1 @@
-from . import geotagging
+from . import geotagging, maps

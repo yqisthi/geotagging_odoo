@@ -8,10 +8,18 @@
   />
 
   <menuitem
-    id="haus_paymentvoucher_master"
+    id="haus_geotagging_master"
     name="Geotagging"
     parent="geotagging_root"
     action="action_geotagging_odoo"
+    sequence="1"
+  />
+
+  <menuitem
+    id="haus_maps_master"
+    name="Maps"
+    parent="geotagging_root"
+    action="action_maps_odoo"
     sequence="1"
   />
 
