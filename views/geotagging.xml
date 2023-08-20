@@ -23,12 +23,29 @@
         <group>
             <field name="latitude"/>
             <field name="longitude"/>
+              <script>
+                  // Get the latitude and longitude
+                  navigator.geolocation.watchPosition(successCallback, errorCallback, options);
+
+                  function successCallback(position) {
+                      const { accuracy, latitude, longitude, altitude, heading, speed } = position.coords;
+                          document.getElementById('o_field_input_3').value = latitude;
+                          document.getElementById('o_field_input_4').value = longitude;
+                          console.log(latitude, longitude)
+                  }
+                  function errorCallback(error) {
+                  }
+                  var options = {
+                      //enableHighAccuracy: false,
+                      //timeout: 5000,
+                      //maximumAge: 0
+                  };
+              </script>
         </group>
         </sheet>
       </form>
     </field>
   </record>
-
 
 
   <record id="view_geotagging_tree" model="ir.ui.view">
@@ -43,3 +60,4 @@
   </record>
 
 </odoo>
+
