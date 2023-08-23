@@ -21,6 +21,7 @@
       <form>
         <sheet>
           <group>
+            <field name="name" />
             <field name="latitude" />
             <field name="longitude" />
             <field name="ip_address_field" />

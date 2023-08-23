@@ -9,6 +9,7 @@ class Geotagging(models.Model):
     _inherit = []
     _description = "Geotagging"
 
+    name = fields.Char("Name")
     latitude = fields.Char("latitude")
     longitude = fields.Char("longitude")
     ip_address_field = fields.Char("IP Address")
@@ -40,11 +41,11 @@ class Geotagging(models.Model):
                 partner.latitude, partner.longitude, partner.ip_address_field))
 
     # trigger when ip_address_field is changed
-    # @api.onchange('ip_address_field')
+    @api.onchange('name')
     def fill_coordinates_on_ip_change(self):
         hostname = socket.gethostname()
         ip_address = socket.gethostbyname(hostname)
-        if self.ip_address_field:
+        if self.name:
             coordinates = self.get_coordinates_by_ip(self.ip_address_field)
             self.ip_address_field = ip_address
             self.latitude = coordinates['latitude']
