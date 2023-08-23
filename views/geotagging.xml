@@ -26,6 +26,8 @@
             <field name="ip_address_field" />
             <button name="action_get_coordinates_by_ip" string="Get Coordinates" type="object"
               class="oe_highlight" />
+            <button name="fill_coordinates_on_ip_change" string="Get IP Address!!!" type="object"
+              class="oe_highlight" />
           </group>
         </sheet>
       </form>
