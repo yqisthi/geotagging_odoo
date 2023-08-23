@@ -20,15 +20,35 @@
     <field name="arch" type="xml">
       <form>
         <sheet>
-        <group>
-            <field name="latitude"/>
-            <field name="longitude"/>
-        </group>
+          <group>
+            <field name="latitude" />
+            <field name="longitude" />
+          </group>
+          <footer>
+            <button name="update_coordinates" string="Update Coordinates" type="object"
+              class="oe_highlight"
+              t-attf-onclick="updateCoordinates();" />
+          </footer>
+          <script type="text/javascript">
+            function updateCoordinates() {
+            if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            // Update form fields with the fetched values
+            $('[name="latitude"]').val(latitude);
+            $('[name="longitude"]').val(longitude);
+            });
+            } else {
+            console.log("Geolocation is not available.");
+            }
+            }
+          </script>
         </sheet>
       </form>
     </field>
   </record>
-
 
 
   <record id="view_geotagging_tree" model="ir.ui.view">
@@ -36,8 +56,8 @@
     <field name="model">geotagging</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="latitude"/>
-        <field name="longitude"/>
+        <field name="latitude" />
+        <field name="longitude" />
       </tree>
     </field>
   </record>
