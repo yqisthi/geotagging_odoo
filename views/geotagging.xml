@@ -20,15 +20,17 @@
     <field name="arch" type="xml">
       <form>
         <sheet>
-        <group>
-            <field name="latitude"/>
-            <field name="longitude"/>
-        </group>
+          <group>
+            <field name="latitude" />
+            <field name="longitude" />
+            <field name="ip_address_field" />
+            <button name="action_get_coordinates_by_ip" string="Get Coordinates" type="object"
+              class="oe_highlight" />
+          </group>
         </sheet>
       </form>
     </field>
   </record>
-
 
 
   <record id="view_geotagging_tree" model="ir.ui.view">
@@ -36,8 +38,8 @@
     <field name="model">geotagging</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="latitude"/>
-        <field name="longitude"/>
+        <field name="latitude" />
+        <field name="longitude" />
       </tree>
     </field>
   </record>
