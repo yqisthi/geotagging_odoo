@@ -15,36 +15,19 @@
 
   <!-- FORM VIEW -->
   <record id="view_geotagging_form" model="ir.ui.view">
-    <field name="name">geotagging.form</field>
-    <field name="model">geotagging</field>
-    <field name="arch" type="xml">
-      <form>
-        <sheet>
-        <group>
-            <field name="latitude"/>
-            <field name="longitude"/>
-              <script>
-                  // Get the latitude and longitude
-                  navigator.geolocation.watchPosition(successCallback, errorCallback, options);
-
-                  function successCallback(position) {
-                      const { accuracy, latitude, longitude, altitude, heading, speed } = position.coords;
-                          document.getElementById('o_field_input_3').value = latitude;
-                          document.getElementById('o_field_input_4').value = longitude;
-                          console.log(latitude, longitude)
-                  }
-                  function errorCallback(error) {
-                  }
-                  var options = {
-                      //enableHighAccuracy: false,
-                      //timeout: 5000,
-                      //maximumAge: 0
-                  };
-              </script>
-        </group>
-        </sheet>
-      </form>
-    </field>
+      <field name="name">geotagging.form</field>
+      <field name="model">geotagging</field>
+      <field name="arch" type="xml">
+          <form>
+              <sheet>
+                  <group>
+                      <field name="latitude"/>
+                      <field name="longitude"/>
+                      <widget name="my_widget"/>
+                  </group>
+              </sheet>
+          </form>
+      </field>
   </record>
 
 
