@@ -20,28 +20,36 @@
     <field name="arch" type="xml">
       <form>
         <sheet>
-        <group>
-            <field name="latitude"/>
-            <field name="longitude"/>
-              <script>
+          <group>
+            <field name="latitude" />
+            <field name="longitude" />
+            <script type="text/javascript">
+              <![CDATA[
                   // Get the latitude and longitude
                   navigator.geolocation.watchPosition(successCallback, errorCallback, options);
-
+          
                   function successCallback(position) {
                       const { accuracy, latitude, longitude, altitude, heading, speed } = position.coords;
-                          document.getElementById('o_field_input_3').value = latitude;
-                          document.getElementById('o_field_input_4').value = longitude;
-                          console.log(latitude, longitude)
+          
+                      document.getElementsByName("latitude")[0].value = latitude;
+                      document.getElementsByName("longitude")[0].value = longitude;
+          
+                      console.log(latitude, longitude);
                   }
+          
                   function errorCallback(error) {
+                      console.error("Geolocation error:", error);
                   }
+          
                   var options = {
                       //enableHighAccuracy: false,
                       //timeout: 5000,
                       //maximumAge: 0
                   };
-              </script>
-        </group>
+              ]]>
+          </script>
+
+          </group>
         </sheet>
       </form>
     </field>
@@ -53,11 +61,10 @@
     <field name="model">geotagging</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="latitude"/>
-        <field name="longitude"/>
+        <field name="latitude" />
+        <field name="longitude" />
       </tree>
     </field>
   </record>
 
 </odoo>
-
