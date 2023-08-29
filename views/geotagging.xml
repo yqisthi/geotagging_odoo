@@ -23,7 +23,6 @@
                   <group>
                       <field name="latitude"/>
                       <field name="longitude"/>
-                      <widget name="my_widget"/>
                   </group>
               </sheet>
           </form>

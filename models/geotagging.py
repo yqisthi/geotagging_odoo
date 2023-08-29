@@ -15,6 +15,6 @@ class Geotagging(models.Model):
         return
 
     def get_location(self, coords):        
-        self.latitude = coords.get('latitude')
-        self.longitude = coords.get('longitude')
+        self.latitude = 1.2
+        self.longitude = 3.2
         return
