@@ -9,6 +9,7 @@
     'license': 'LGPL-3',
     'depends': [
         'web_google_maps',
+        'web',
         # 'web_map',
     ],
     'data': [
