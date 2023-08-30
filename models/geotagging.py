@@ -11,10 +11,4 @@ class Geotagging(models.Model):
     longitude = fields.Float("longitude")
 
 
-    def get_location_xml(self):
-        return
 
-    def get_location(self, coords):        
-        self.latitude = 1.2
-        self.longitude = 3.2
-        return
