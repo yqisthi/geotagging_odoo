@@ -1,6 +1,6 @@
 odoo.define("geotagging_odoo.geolocation", function (require) {
   "use strict";
-  console.log("KONTOLL");
+  console.log("LOADED");
 
   var FormController = require("web.FormController");
 
