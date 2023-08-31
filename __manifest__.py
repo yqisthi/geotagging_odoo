@@ -23,7 +23,9 @@
         ],
     },
     'demo': [],
-    'qweb': [],
+    'qweb': [
+        'static\src\js\geo.js',
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,
