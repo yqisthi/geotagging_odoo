@@ -21,7 +21,9 @@
       <form>
         <sheet>
           <group>
-            <field name="location" widget="gplaces_autocomplete" />
+            <field name="name" />
+            <field name="latitude" />
+            <field name="longitude" />
           </group>
         </sheet>
       </form>
@@ -34,7 +36,8 @@
     <field name="model">maps</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="location" />
+        <field name="name" />
+        <field name="latitude" />
       </tree>
     </field>
   </record>

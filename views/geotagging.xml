@@ -15,18 +15,27 @@
 
   <!-- FORM VIEW -->
   <record id="view_geotagging_form" model="ir.ui.view">
-      <field name="name">geotagging.form</field>
-      <field name="model">geotagging</field>
-      <field name="arch" type="xml">
-          <form>
-              <sheet>
-                  <group>
-                      <field name="latitude"/>
-                      <field name="longitude"/>
-                  </group>
-              </sheet>
-          </form>
-      </field>
+    <field name="name">geotagging.form</field>
+    <field name="model">geotagging</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <field name="isreadonly" invisible="1"></field>
+          <group>
+            <field name="Latitude Kantor" attrs="{'readonly': [('isreadonly','=',True)] }" />
+            <field name="Longitude Kantor" attrs="{'readonly': [('isreadonly','=',True)] }" />
+          </group>
+          <group>
+            <field name="location_id"></field>
+            <field name="lat"></field>
+            <field name="lot"></field>
+          </group>
+          <button name="comparison" string="bandingin lat asli sama lat palsu!" type="object"
+            class="oe_highlight" />
+
+        </sheet>
+      </form>
+    </field>
   </record>
 
 
@@ -35,11 +44,10 @@
     <field name="model">geotagging</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="latitude"/>
-        <field name="longitude"/>
+        <field name="latitude" />
+        <field name="longitude" />
       </tree>
     </field>
   </record>
 
 </odoo>
-
