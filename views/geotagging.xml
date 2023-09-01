@@ -22,13 +22,13 @@
         <sheet>
           <field name="isreadonly" invisible="1"></field>
           <group>
-            <field name="Latitude Kantor" attrs="{'readonly': [('isreadonly','=',True)] }" />
-            <field name="Longitude Kantor" attrs="{'readonly': [('isreadonly','=',True)] }" />
+            <field name="latitude" attrs="{'readonly': [('isreadonly','=',True)] }" />
+            <field name="longitude" attrs="{'readonly': [('isreadonly','=',True)] }" />
           </group>
           <group>
             <field name="location_id"></field>
-            <field name="lat"></field>
-            <field name="lot"></field>
+            <field name="lat" String="Latitude Kantor"></field>
+            <field name="lot" String="Longitude Kantor"></field>
           </group>
           <button name="comparison" string="bandingin lat asli sama lat palsu!" type="object"
             class="oe_highlight" />
