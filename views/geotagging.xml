@@ -20,7 +20,6 @@
     <field name="arch" type="xml">
       <form>
         <sheet>
-          <field name="isreadonly" invisible="1"></field>
           <group>
             <field name="latitude" attrs="{'readonly': [('isreadonly','=',True)] }" />
             <field name="longitude" attrs="{'readonly': [('isreadonly','=',True)] }" />
@@ -29,10 +28,12 @@
             <field name="location_id"></field>
             <field name="lat" String="Latitude Kantor"></field>
             <field name="lot" String="Longitude Kantor"></field>
+            <field name="isnear" String="Jarak dengan kantor"
+              attrs="{'readonly': 
+            ['|', ('isnear','=','far'), ('isnear','=','medium')] }"></field>
+            <field name="isreadonly" String="Dekat dengan kantor?"></field>
+            <button name="comparing" type="object" class="oe_stat_button" />
           </group>
-          <button name="comparison" string="bandingin lat asli sama lat palsu!" type="object"
-            class="oe_highlight" />
-
         </sheet>
       </form>
     </field>
