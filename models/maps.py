@@ -6,4 +6,6 @@ class Maps(models.Model):
     _inherit = []
     _description = "Maps"
 
-    location = fields.Char("Location")
+    name = fields.Char(String="Location")
+    latitude = fields.Float(String="latitude", digits=(16, 5))
+    longitude = fields.Float(String="longitude", digits=(16, 5))

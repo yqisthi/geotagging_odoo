@@ -9,7 +9,7 @@
     'license': 'LGPL-3',
     'depends': [
         'web_google_maps',
-        'web_map',
+        # 'web_map',
     ],
     'data': [
         'security/ir.model.access.csv',

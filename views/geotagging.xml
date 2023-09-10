@@ -20,15 +20,24 @@
     <field name="arch" type="xml">
       <form>
         <sheet>
-        <group>
-            <field name="latitude"/>
-            <field name="longitude"/>
-        </group>
+          <group>
+            <field name="latitude" attrs="{'readonly': [('isreadonly','=',True)] }" />
+            <field name="longitude" attrs="{'readonly': [('isreadonly','=',True)] }" />
+          </group>
+          <group>
+            <field name="location_id"></field>
+            <field name="lat" String="Latitude Kantor"></field>
+            <field name="lot" String="Longitude Kantor"></field>
+            <field name="isnear" String="Jarak dengan kantor"
+              attrs="{'readonly': 
+            ['|', ('isnear','=','far'), ('isnear','=','medium')] }"></field>
+            <field name="isreadonly" String="Dekat dengan kantor?"></field>
+            <button name="comparing" type="object" class="oe_stat_button" />
+          </group>
         </sheet>
       </form>
     </field>
   </record>
-
 
 
   <record id="view_geotagging_tree" model="ir.ui.view">
@@ -36,8 +45,8 @@
     <field name="model">geotagging</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="latitude"/>
-        <field name="longitude"/>
+        <field name="latitude" />
+        <field name="longitude" />
       </tree>
     </field>
   </record>
