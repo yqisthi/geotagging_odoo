@@ -27,9 +27,9 @@ class Geotagging(models.Model):
     lot = fields.Float(String="longitude", digits=(
         16, 5), related='location_id.longitude')
 
-    @api.depends('lat')
+    @api.onchange('isnear')
     def compare(self):
-        if self.lat > self.latitude and self.lot > self.longitude:
+        if self.isnear != "near":
             self.isreadonly = True
         else:
             self.isreadonly = False
