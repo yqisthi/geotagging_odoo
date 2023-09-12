@@ -10,41 +10,65 @@ odoo.define("geotagging_odoo.geolocation", function (require) {
   // Odoo View Controller
   FormController.include({
     // Function executed on save
-    saveRecord: function () {
-      console.log("Saved!");
+    _onEdit: function () {
+      console.log("Editing!");
       var self = this;
-      return this._super.apply(this, arguments).then(function () {
-        // Get Current Record
-        var recordID = self.model.get(self.handle, { raw: true }).res_id;
+      var sup = this._super();
 
-        // If record obtained, browser ask user for coordinates using GPS
-        if (recordID) {
-          navigator.geolocation.getCurrentPosition(function (position) {
-            const { latitude, longitude } = position.coords;
-            const coords = {
-              latitude,
-              longitude,
-            };
-            // Write record
-            rpc
-              .query({
-                model: "geotagging",
-                method: "write",
-                args: [
-                  [recordID],
-                  { latitude: coords.latitude, longitude: coords.longitude },
-                ],
-              })
-              .then(function () {
-                // Success callback if needed
-              })
-              .catch(function (error) {
-                // Error handling if needed
-                console.error(error);
-              });
+      // Get Current Record
+      var recordID = self.model.get(self.handle, { raw: true }).res_id;
+
+      // If record obtained, browser ask user for coordinates using GPS
+      if (recordID) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const { latitude, longitude } = position.coords;
+          const coords = {
+            latitude,
+            longitude,
+          };
+          console.log(coords);
+          // Write record
+          rpc.query({
+            model: "geotagging",
+            method: "write",
+            args: [
+              [recordID],
+              { latitude: coords.latitude, longitude: coords.longitude },
+            ],
           });
-        }
-      });
+        });
+      }
+      return sup;
+    },
+    _onCreate: function () {
+      console.log("Creating");
+      var self = this;
+      var sup = this._super();
+
+      // Get Current Record
+      var recordID = self.model.get(self.handle, { raw: true }).res_id;
+
+      // If record obtained, browser ask user for coordinates using GPS
+      if (recordID) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const { latitude, longitude } = position.coords;
+          const coords = {
+            latitude,
+            longitude,
+          };
+          console.log(coords);
+          // Write record
+          rpc.query({
+            model: "geotagging",
+            method: "write",
+            args: [
+              [recordID],
+              { latitude: coords.latitude, longitude: coords.longitude },
+            ],
+          });
+        });
+      }
+      return sup;
     },
   });
 
