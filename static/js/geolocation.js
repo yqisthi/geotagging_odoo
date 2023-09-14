@@ -6,18 +6,20 @@ odoo.define("geotagging_odoo.geolocation", function (require) {
   // Get Odoo View Controller and rpc
   var FormController = require("web.FormController");
   var rpc = require("web.rpc");
+  var qweb = require("web.core").qweb;
 
   // Odoo View Controller
   FormController.include({
     // Function executed on save
     _onEdit: function () {
-      console.log("Editing!");
+      console.log("onEdit");
       var self = this;
       var sup = this._super();
 
       // Get Current Record
       var recordID = self.model.get(self.handle, { raw: true }).res_id;
 
+      console.log(recordID);
       // If record obtained, browser ask user for coordinates using GPS
       if (recordID) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -28,26 +30,32 @@ odoo.define("geotagging_odoo.geolocation", function (require) {
           };
           console.log(coords);
           // Write record
-          rpc.query({
-            model: "geotagging",
-            method: "write",
-            args: [
-              [recordID],
-              { latitude: coords.latitude, longitude: coords.longitude },
-            ],
-          });
+          rpc
+            .query({
+              model: "geotagging",
+              method: "write",
+              args: [
+                [recordID],
+                { latitude: coords.latitude, longitude: coords.longitude },
+              ],
+            })
+            .then(function () {
+              self.trigger_up("reload");
+            });
         });
       }
       return sup;
     },
+
     _onCreate: function () {
-      console.log("Creating");
+      console.log("onEdit");
       var self = this;
       var sup = this._super();
 
       // Get Current Record
       var recordID = self.model.get(self.handle, { raw: true }).res_id;
 
+      console.log(recordID);
       // If record obtained, browser ask user for coordinates using GPS
       if (recordID) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -58,14 +66,18 @@ odoo.define("geotagging_odoo.geolocation", function (require) {
           };
           console.log(coords);
           // Write record
-          rpc.query({
-            model: "geotagging",
-            method: "write",
-            args: [
-              [recordID],
-              { latitude: coords.latitude, longitude: coords.longitude },
-            ],
-          });
+          rpc
+            .query({
+              model: "geotagging",
+              method: "write",
+              args: [
+                [recordID],
+                { latitude: coords.latitude, longitude: coords.longitude },
+              ],
+            })
+            .then(function () {
+              self.trigger_up("reload");
+            });
         });
       }
       return sup;
