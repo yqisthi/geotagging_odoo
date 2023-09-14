@@ -15,7 +15,6 @@ class Geotagging(models.Model):
     location_id = fields.Many2one('maps', String='location')
 
     isreadonly = fields.Boolean(String="is readonly?", compute='compare')
-    deskripsi = fields.Char(String="Deskripsi")
 
     isnear = fields.Selection([
         ('far', 'Far'),
@@ -55,16 +54,6 @@ class Geotagging(models.Model):
 
         raise ValidationError(error_message)
 
-    # constraint itu value buat yg untuk validation
-    @api.constrains('deskripsi')
-    def _check_latitude_longitude(self):
-        for record in self:
-            latitude_diff = abs(record.lat - record.latitude)
-            longitude_diff = abs(record.lot - record.longitude)
-
-            if latitude_diff > 10 or longitude_diff > 10:
-                raise ValidationError(
-                    "You are too far from the office, please try again later")
 
     @api.onchange('location_id')
     def _onchange_location_id(self):

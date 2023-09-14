@@ -41,6 +41,22 @@ odoo.define("geotagging_odoo.geolocation", function (require) {
             })
             .then(function () {
               self.trigger_up("reload");
+              rpc
+                .query({
+                  model: "geotagging",
+                  method: "read",
+                  args: [[recordID], ["isnear"]],
+                })
+                .then(function (result) {
+                  if (result[0].isnear != "near") {
+                    self.displayNotification({
+                      type: "warning",
+                      title: "WARNING",
+                      message: "Your Location is too far from office",
+                      sticky: true,
+                    });
+                  }
+                });
             });
         });
       }

@@ -32,7 +32,6 @@
               attrs="{'readonly': 
             ['|', ('isnear','=','far'), ('isnear','=','medium')] }"></field>
             <field name="isreadonly" String="Dekat dengan kantor?"></field>
-            <field name="deskripsi"></field>
             <button name="comparing" type="object" class="oe_stat_button" />
           </group>
         </sheet>
